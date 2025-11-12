@@ -1,4 +1,4 @@
-# Album collection Express backend serving REST APIs
+## Album collection Express backend serving REST APIs
 - Building an Express server using TypeGraphQL and TypeORM.
 - Development is part of the qualitative research for a Bachelor's thesis exploring the differences between GraphQL and REST in full stack development
 
