@@ -2,12 +2,14 @@ import { AppDataSource } from './data-source'
 import * as express from 'express'
 import * as dotenv from 'dotenv'
 import { albumRouter } from './routes/album.routes'
+import { errorHandler } from './middleware/errorHandler'
 dotenv.config()
 
-const app = express()
-app.use(express.json())
-const PORT = process.env.PORT
-app.use('/api/v1', albumRouter)
+const app = express();
+app.use(express.json());
+const PORT = process.env.PORT || 3000;
+app.use('/api/v1', albumRouter);
+app.use(errorHandler);
 
 async function main() {
     try {
@@ -21,6 +23,6 @@ async function main() {
     } catch (error) {   
         console.log('Error initializing database connection')
     }   
-}
+};
 
-main()
+main();
