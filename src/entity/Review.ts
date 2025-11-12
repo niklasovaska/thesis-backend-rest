@@ -1,4 +1,4 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm"
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDateColumn } from "typeorm"
 import { Album } from "./Album"
 import { AppUser } from "./AppUser"
 
@@ -11,8 +11,11 @@ export class Review extends BaseEntity {
     @Column("float")
     rating!: number
 
-    @Column("varchar", {length: 255})
-    content!: string
+    @Column("varchar", { length: 255, nullable: true })
+    content?: string
+
+    @CreateDateColumn({ name: "created_at", type: "timestamp"})
+    createdAt!: Date
 
     @ManyToOne(() => Album, (album) => album.reviews)
     @JoinColumn({name: 'album_id', referencedColumnName: 'id'})
